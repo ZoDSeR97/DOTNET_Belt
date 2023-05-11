@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"]="Comission Quest";
+}
+@model Quest
+<div class="row justify-content-between">
+    <div class="row col-10">
+        <a class="col-2" href="/dashboard">Quest Logs</a>
+        <a class="col-2" href="/quests/new">Post a Quest</a>
+        <a class="col-2" href="/quests">Find a Quest</a>
+    </div>
+    <a class="col" href="/logout">Logout</a>
+</div>
+<h1>Post a Quest</h1>
+<form asp-action="AddQuest" asp-controller="Quest" method="post">
+    <div class="mb-3 form-floating">
+        <input type="text" asp-for="Name" class="form-control" placeholder="SomeQuest">
+        <label asp-for="Name"></label>
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="mb-3 form-floating">
+        <input type="number" asp-for="Gold" class="form-control" placeholder="SomeReward">
+        <label asp-for="Gold"></label>
+        <span asp-validation-for="Gold"></span>
+    </div>
+    <div class="mb-3 form-floating">
+        <textarea asp-for="Description" class="form-control" cols="40" rows="10"></textarea>
+        <label asp-for="Description"></label>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <button type="submit" class="btn bg-primary text-white">Post Quest</button>
+</form>

@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"]="Find your quest";
+}
+@model List<Quest>
+<div class="row justify-content-between">
+    <div class="row col-10">
+        <a class="col-2" href="/dashboard">Quest Logs</a>
+        <a class="col-2" href="/quests/new">Post a Quest</a>
+        <a class="col-2" href="/quests">Find a Quest</a>
+    </div>
+    <a class="col" href="/logout">Logout</a>
+</div>
+<h1>Available Quest</h1>
+@foreach (Quest q in @Model){
+    <div class="card border p-3">
+        <div class="row">
+            <h2 class="col-11">@q.Name</h2>
+            <p class="col">@q.Gold Gold</p>
+        </div>
+        <p>@q.Description</p>
+        <div class="row">
+            <p class="col-11">People on Quest: @q.Players.Count</p>
+            <a href="/quests/@q.QuestId/join" class="col btn bg-primary text-white">Join</a>
+        </div>
+    </div>
+}

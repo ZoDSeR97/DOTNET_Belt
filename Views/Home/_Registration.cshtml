@@ -1,0 +1,26 @@
+@model User;
+<form asp-action="Register" asp-controller="Home" method="post" class="col">
+    <h1>Registration</h1>
+    <div class="mb-3 form-floating">
+        <input type="text" class="form-control" asp-for="UserName" placeholder="JohnWick69">
+        <label asp-for="UserName" class="form-label"></label>
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="mb-3 form-floating">
+        <input type="email" class="form-control" asp-for="Email" placeholder="email">
+        <label asp-for="Email" class="form-label"></label>
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3 form-floating">
+        <input type="password" class="form-control" asp-for="Password" placeholder="password">
+        <label asp-for="Password" class="form-label"></label>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3 form-floating">
+        <input type="password" class="form-control" asp-for="PasswordConfirm" placeholder="Confirm Password">
+        <label asp-for="PasswordConfirm" class="form-label"></label>
+        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

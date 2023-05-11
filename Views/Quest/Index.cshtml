@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"]="Dashboard";
+}
+@model User
+<div class="row justify-content-between">
+    <div class="row col-10">
+        <a class="col-2" href="/dashboard">Quest Logs</a>
+        <a class="col-2" href="/quests/new">Post a Quest</a>
+        <a class="col-2" href="/quests">Find a Quest</a>
+    </div>
+    <a class="col" href="/logout">Logout</a>
+</div>
+<h1>Total gold earned: @Model.Gold Gold</h1>
+<div class="row">
+    <div class="col">
+        <h1>Your Posted Quests</h1>
+        @foreach (Quest q in @Model.PostedQuests){
+            <div class="card border p-3">
+                <div class="row">
+                    <h2 class="col-10">@q.Name</h2>
+                    <p class="col">@q.Gold Gold</p>
+                </div>
+                <p>@q.Description</p>
+                <div class="d-flex justify-content-between">
+                    <p>People on Quest: @q.Players.Count</p>
+                    @if(!q.Closed){
+                        <a href="/quests/@q.QuestId/close" class="btn bg-danger text-white">Close</a>
+                    }else{
+                        <p class="text-danger">Closed</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col">
+        <h1>Your Taken Quests</h1>
+        @foreach (Progress p in @Model.TakenQuests){
+            <div class="card border p-3">
+                <div class="row">
+                    <h2 class="col-10">@p.Quest?.Name</h2>
+                    <p class="col">@p.Quest?.Gold Gold</p>
+                </div>
+                <div class="row">
+                    <p class="col-10">@p.Quest?.Description</p>
+                    @if(!p.Completed){
+                        <a  href="/progress/@p.ProgressId/leave" class="col btn bg-danger text-white">
+                            Leave
+                        </a>
+                    }
+                </div>
+                <div class="row">
+                    <p class="col-10">People on Quest: @p.Quest?.Players.Count</p>
+                    @if(p.Quest.Closed){
+                        <p class="col">Quest closed</p>
+                    }else if(!p.Completed){
+                        <a href="/progress/@p.ProgressId/complete" class="col btn bg-danger text-white">
+                            Complete
+                        </a>
+                    }else{
+                        <p class="col text-success">Completed</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
